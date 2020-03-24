@@ -207,6 +207,13 @@ func (d *differ) IncrementalDiff(existing []*models.RecordConfig) (unchanged, cr
 			create = append(create, Correlation{d, nil, rec})
 		}
 	}
+
+	// Sort the results. It isn't just cosmetic: it helps human proofreading.
+	sort.Sort(unchanged)
+	sort.Sort(create)
+	sort.Sort(toDelete)
+	sort.Sort(modify)
+
 	return
 }
 
